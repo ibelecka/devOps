@@ -1,0 +1,55 @@
+AWS
+Situation 1:
+Make inventory of all resources. Check version by command aws --version
+Can write workflow in Github actions to check version on commit or before
+CAn have some globas variables to make suer that only one version is used
+
+Situation 2:
+instal aws CLI
+configure (access key, secret access key, region name)
+validate - run simple command 
+
+Situation 3:
+in AWS - EC2 - Key pair - enter settings + tags - create key pair
+
+Situation 4:
+in AWS - EC2 - Key pair - find key - check settings
+
+Situation 5:
+aws ec2 describe-instances --filters "Name=instance-type,Values=t2.small"
+
+Situation 6:
+aws ec2 describe-instances --filters "Name=instance-type,Values=t2.small,t2.medium"
+
+Situation 7:
+aws ec2 describe-instances --filters "Name=instance-type,Values=t2.small"
+
+Situation 8:
+aws ec2 describe-instances
+
+Situation 9: 
+aws ec2 describe-instances --filters 'Name=tag:Name,Values=*'
+
+Situation 10:
+aws ec2 describe-instances --filters "Name=instance-type,Values=t2.small"
+
+Situation 11:
+aws ec2 stop-instances --instance-ids <instance-id>
+
+Situation 12:
+aws ec2 start-instances --instance-ids <instance-id>
+
+Situation 13:
+aws ec2 terminate-instances --instance-ids <instance-id>
+
+Situation 14:
+AWS - VPC - set settings
+then AWS - EC2 and assign instance to crated VPC
+
+Situation 15:
+aws ec2 describe-images --owners self
+
+Situation 16:
+aws ec2 describe-instances --query "Reservations[].Instances[].{Name: Tags[?Key=='Name'].Value | [0], Status: State.Name}" --output table
+
+

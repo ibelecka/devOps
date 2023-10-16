@@ -1,0 +1,538 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Windows\system32> cd C:\Users\amm4e\Downloads\devOps\docker_repo
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> git clone https://github.com/docker/welcome-to-docker
+Cloning into 'welcome-to-docker'...
+remote: Enumerating objects: 94, done.
+remote: Counting objects: 100% (27/27), done.
+remote: Compressing objects: 100% (12/12), done.
+remote: Total 94 (delta 20), reused 15 (delta 15), pack-reused 67Receiving objects:  70% (66/94)
+Receiving objects: 100% (94/94), 312.87 KiB | 1.91 MiB/s, done.
+Resolving deltas: 100% (42/42), done.
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Common Commands:
+  run         Create and run a new container from an image
+  exec        Execute a command in a running container
+  ps          List containers
+  build       Build an image from a Dockerfile
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  images      List images
+  login       Log in to a registry
+  logout      Log out from a registry
+  search      Search Docker Hub for images
+  version     Show the Docker version information
+  info        Display system-wide information
+
+Management Commands:
+  builder     Manage builds
+  buildx*     Docker Buildx (Docker Inc., v0.11.2-desktop.5)
+  compose*    Docker Compose (Docker Inc., v2.22.0-desktop.2)
+  container   Manage containers
+  context     Manage contexts
+  dev*        Docker Dev Environments (Docker Inc., v0.1.0)
+  extension*  Manages Docker extensions (Docker Inc., v0.2.20)
+  image       Manage images
+  init*       Creates Docker-related starter files for your project (Docker Inc., v0.1.0-beta.8)
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  plugin      Manage plugins
+  sbom*       View the packaged-based Software Bill Of Materials (SBOM) for an image (Anchore Inc., 0.6.0)
+  scan*       Docker Scan (Docker Inc., v0.26.0)
+  scout*      Docker Scout (Docker Inc., v1.0.7)
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Swarm Commands:
+  swarm       Manage Swarm
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Global Options:
+      --config string      Location of client config files (default
+                           "C:\\Users\\amm4e\\.docker")
+  -c, --context string     Name of the context to use to connect to the
+                           daemon (overrides DOCKER_HOST env var and
+                           default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket to connect to
+  -l, --log-level string   Set the logging level ("debug", "info",
+                           "warn", "error", "fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default
+                           "C:\\Users\\amm4e\\.docker\\ca.pem")
+      --tlscert string     Path to TLS certificate file (default
+                           "C:\\Users\\amm4e\\.docker\\cert.pem")
+      --tlskey string      Path to TLS key file (default
+                           "C:\\Users\\amm4e\\.docker\\key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Run 'docker COMMAND --help' for more information on a command.
+
+For more help on how to use Docker, head to https://docs.docker.com/go/guides/
+PS C:\Users\amm4e\Downloads\devOps\docker_repo>
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker --version
+Docker version 24.0.6, build ed223bc
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker run busybox echo "Hello world"
+Unable to find image 'busybox:latest' locally
+latest: Pulling from library/busybox
+3f4d90098f5b: Pull complete
+Digest: sha256:3fbc632167424a6d997e74f52b878d7cc478225cffac6bc977eedfe51c7f4e79
+Status: Downloaded newer image for busybox:latest
+Hello world
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker ps -a
+CONTAINER ID   IMAGE     COMMAND                CREATED          STATUS                      PORTS     NAMES
+d15322ef6d2e   busybox   "echo 'Hello world'"   43 seconds ago   Exited (0) 41 seconds ago             agitated_pasteur
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+busybox      latest    a416a98b71e2   2 months ago   4.26MB
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker images -a
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+busybox      latest    a416a98b71e2   2 months ago   4.26MB
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker build -t welcome-to-docker .
+[+] Building 0.1s (2/2) FINISHED                                                         docker:default
+ => [internal] load build definition from Dockerfile                                               0.1s
+ => => transferring dockerfile: 2B                                                                 0.0s
+ => [internal] load .dockerignore                                                                  0.1s
+ => => transferring context: 2B                                                                    0.0s
+ERROR: failed to solve: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount2040916010/Dockerfile: no such file or directory
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> cd .\welcome-to-docker\
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\welcome-to-docker> docker build -t welcome-to-docker .
+[+] Building 87.5s (11/11) FINISHED                                                      docker:default
+ => [internal] load .dockerignore                                                                  0.0s
+ => => transferring context: 52B                                                                   0.0s
+ => [internal] load build definition from Dockerfile                                               0.0s
+ => => transferring dockerfile: 669B                                                               0.0s
+ => [internal] load metadata for docker.io/library/node:18-alpine                                  1.9s
+ => [1/6] FROM docker.io/library/node:18-alpine@sha256:617b85a014faf7aabe0661885a245cf3022e396756  9.3s
+ => => resolve docker.io/library/node:18-alpine@sha256:617b85a014faf7aabe0661885a245cf3022e396756  0.0s
+ => => sha256:c41b5bfd0ef6f2db8f50323ce5ffb39f4ad444b5e5796c819ba4b1b799fbfdc2 1.16kB / 1.16kB     0.0s
+ => => sha256:ecbe47697d0859f07c843bb146bbc172e597716e9f21a021aadf7693e59b512a 6.78kB / 6.78kB     0.0s
+ => => sha256:96526aa774ef0126ad0fe9e9a95764c5fc37f409ab9e97021e7b4775d82bf6fa 3.40MB / 3.40MB     0.6s
+ => => sha256:940e130f7dfab921c014dde20cc226266f7b12ca39c90eee5f20b8b95886e04d 47.88MB / 47.88MB   5.1s
+ => => sha256:ec4aadec66232e35f8f751349cb85e4268dea8246ad5fe64b4846d3c1a3f5918 2.34MB / 2.34MB     0.9s
+ => => sha256:617b85a014faf7aabe0661885a245cf3022e39675661d5795ab6748bb2f20f0f 1.43kB / 1.43kB     0.0s
+ => => extracting sha256:96526aa774ef0126ad0fe9e9a95764c5fc37f409ab9e97021e7b4775d82bf6fa          0.2s
+ => => sha256:8e83dfb4a0ff093c1c2f41356192c06571d592b123c45f375e8cbcfe51bc5ff5 451B / 451B         0.9s
+ => => extracting sha256:940e130f7dfab921c014dde20cc226266f7b12ca39c90eee5f20b8b95886e04d          3.7s
+ => => extracting sha256:ec4aadec66232e35f8f751349cb85e4268dea8246ad5fe64b4846d3c1a3f5918          0.1s
+ => => extracting sha256:8e83dfb4a0ff093c1c2f41356192c06571d592b123c45f375e8cbcfe51bc5ff5          0.0s
+ => [internal] load build context                                                                  0.1s
+ => => transferring context: 708.25kB                                                              0.1s
+ => [2/6] WORKDIR /app                                                                             0.5s
+ => [3/6] COPY package*.json ./                                                                    0.0s
+ => [4/6] COPY ./src ./src                                                                         0.0s
+ => [5/6] COPY ./public ./public                                                                   0.0s
+ => [6/6] RUN npm install     && npm install -g serve     && npm run build     && rm -fr node_mo  74.0s
+ => exporting to image                                                                             1.3s
+ => => exporting layers                                                                            1.3s
+ => => writing image sha256:e0903c44ec12c39bd12121d1d257f02ed3f1186aece101b942023a6fdc550aae       0.0s
+ => => naming to docker.io/library/welcome-to-docker                                               0.0s
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\welcome-to-docker> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\welcome-to-docker> docker ps
+CONTAINER ID   IMAGE                      COMMAND                  CREATED          STATUS          PORTS                    NAMES
+d557e6f2e97b   welcome-to-docker:latest   "docker-entrypoint.s…"   17 seconds ago   Up 14 seconds   0.0.0.0:8098->3000/tcp   NodeJSRylles
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\welcome-to-docker>
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Windows\system32> cd C:\Users\amm4e\Downloads\devOps\docker_repo
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> git clone https://github.com/docker/welcome-to-docker
+Cloning into 'welcome-to-docker'...
+remote: Enumerating objects: 94, done.
+remote: Counting objects: 100% (27/27), done.
+remote: Compressing objects: 100% (12/12), done.
+remote: Total 94 (delta 20), reused 15 (delta 15), pack-reused 67Receiving objects:  70% (66/94)
+Receiving objects: 100% (94/94), 312.87 KiB | 1.91 MiB/s, done.
+Resolving deltas: 100% (42/42), done.
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Common Commands:
+  run         Create and run a new container from an image
+  exec        Execute a command in a running container
+  ps          List containers
+  build       Build an image from a Dockerfile
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  images      List images
+  login       Log in to a registry
+  logout      Log out from a registry
+  search      Search Docker Hub for images
+  version     Show the Docker version information
+  info        Display system-wide information
+
+Management Commands:
+  builder     Manage builds
+  buildx*     Docker Buildx (Docker Inc., v0.11.2-desktop.5)
+  compose*    Docker Compose (Docker Inc., v2.22.0-desktop.2)
+  container   Manage containers
+  context     Manage contexts
+  dev*        Docker Dev Environments (Docker Inc., v0.1.0)
+  extension*  Manages Docker extensions (Docker Inc., v0.2.20)
+  image       Manage images
+  init*       Creates Docker-related starter files for your project (Docker Inc., v0.1.0-beta.8)
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  plugin      Manage plugins
+  sbom*       View the packaged-based Software Bill Of Materials (SBOM) for an image (Anchore Inc., 0.6.0)
+  scan*       Docker Scan (Docker Inc., v0.26.0)
+  scout*      Docker Scout (Docker Inc., v1.0.7)
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Swarm Commands:
+  swarm       Manage Swarm
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Global Options:
+      --config string      Location of client config files (default
+                           "C:\\Users\\amm4e\\.docker")
+  -c, --context string     Name of the context to use to connect to the
+                           daemon (overrides DOCKER_HOST env var and
+                           default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket to connect to
+  -l, --log-level string   Set the logging level ("debug", "info",
+                           "warn", "error", "fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default
+                           "C:\\Users\\amm4e\\.docker\\ca.pem")
+      --tlscert string     Path to TLS certificate file (default
+                           "C:\\Users\\amm4e\\.docker\\cert.pem")
+      --tlskey string      Path to TLS key file (default
+                           "C:\\Users\\amm4e\\.docker\\key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Run 'docker COMMAND --help' for more information on a command.
+
+For more help on how to use Docker, head to https://docs.docker.com/go/guides/
+PS C:\Users\amm4e\Downloads\devOps\docker_repo>
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker --version
+Docker version 24.0.6, build ed223bc
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker run busybox echo "Hello world"
+Unable to find image 'busybox:latest' locally
+latest: Pulling from library/busybox
+3f4d90098f5b: Pull complete
+Digest: sha256:3fbc632167424a6d997e74f52b878d7cc478225cffac6bc977eedfe51c7f4e79
+Status: Downloaded newer image for busybox:latest
+Hello world
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker ps -a
+CONTAINER ID   IMAGE     COMMAND                CREATED          STATUS                      PORTS     NAMES
+d15322ef6d2e   busybox   "echo 'Hello world'"   43 seconds ago   Exited (0) 41 seconds ago             agitated_pasteur
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+busybox      latest    a416a98b71e2   2 months ago   4.26MB
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker images -a
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+busybox      latest    a416a98b71e2   2 months ago   4.26MB
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> docker build -t welcome-to-docker .
+[+] Building 0.1s (2/2) FINISHED                                                         docker:default
+ => [internal] load build definition from Dockerfile                                               0.1s
+ => => transferring dockerfile: 2B                                                                 0.0s
+ => [internal] load .dockerignore                                                                  0.1s
+ => => transferring context: 2B                                                                    0.0s
+ERROR: failed to solve: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount2040916010/Dockerfile: no such file or directory
+PS C:\Users\amm4e\Downloads\devOps\docker_repo> cd .\welcome-to-docker\
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\welcome-to-docker> docker build -t welcome-to-docker .
+[+] Building 87.5s (11/11) FINISHED                                                      docker:default
+ => [internal] load .dockerignore                                                                  0.0s
+ => => transferring context: 52B                                                                   0.0s
+ => [internal] load build definition from Dockerfile                                               0.0s
+ => => transferring dockerfile: 669B                                                               0.0s
+ => [internal] load metadata for docker.io/library/node:18-alpine                                  1.9s
+ => [1/6] FROM docker.io/library/node:18-alpine@sha256:617b85a014faf7aabe0661885a245cf3022e396756  9.3s
+ => => resolve docker.io/library/node:18-alpine@sha256:617b85a014faf7aabe0661885a245cf3022e396756  0.0s
+ => => sha256:c41b5bfd0ef6f2db8f50323ce5ffb39f4ad444b5e5796c819ba4b1b799fbfdc2 1.16kB / 1.16kB     0.0s
+ => => sha256:ecbe47697d0859f07c843bb146bbc172e597716e9f21a021aadf7693e59b512a 6.78kB / 6.78kB     0.0s
+ => => sha256:96526aa774ef0126ad0fe9e9a95764c5fc37f409ab9e97021e7b4775d82bf6fa 3.40MB / 3.40MB     0.6s
+ => => sha256:940e130f7dfab921c014dde20cc226266f7b12ca39c90eee5f20b8b95886e04d 47.88MB / 47.88MB   5.1s
+ => => sha256:ec4aadec66232e35f8f751349cb85e4268dea8246ad5fe64b4846d3c1a3f5918 2.34MB / 2.34MB     0.9s
+ => => sha256:617b85a014faf7aabe0661885a245cf3022e39675661d5795ab6748bb2f20f0f 1.43kB / 1.43kB     0.0s
+ => => extracting sha256:96526aa774ef0126ad0fe9e9a95764c5fc37f409ab9e97021e7b4775d82bf6fa          0.2s
+ => => sha256:8e83dfb4a0ff093c1c2f41356192c06571d592b123c45f375e8cbcfe51bc5ff5 451B / 451B         0.9s
+ => => extracting sha256:940e130f7dfab921c014dde20cc226266f7b12ca39c90eee5f20b8b95886e04d          3.7s
+ => => extracting sha256:ec4aadec66232e35f8f751349cb85e4268dea8246ad5fe64b4846d3c1a3f5918          0.1s
+ => => extracting sha256:8e83dfb4a0ff093c1c2f41356192c06571d592b123c45f375e8cbcfe51bc5ff5          0.0s
+ => [internal] load build context                                                                  0.1s
+ => => transferring context: 708.25kB                                                              0.1s
+ => [2/6] WORKDIR /app                                                                             0.5s
+ => [3/6] COPY package*.json ./                                                                    0.0s
+ => [4/6] COPY ./src ./src                                                                         0.0s
+ => [5/6] COPY ./public ./public                                                                   0.0s
+ => [6/6] RUN npm install     && npm install -g serve     && npm run build     && rm -fr node_mo  74.0s
+ => exporting to image                                                                             1.3s
+ => => exporting layers                                                                            1.3s
+ => => writing image sha256:e0903c44ec12c39bd12121d1d257f02ed3f1186aece101b942023a6fdc550aae       0.0s
+ => => naming to docker.io/library/welcome-to-docker                                               0.0s
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\welcome-to-docker> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\welcome-to-docker> docker ps
+CONTAINER ID   IMAGE                      COMMAND                  CREATED          STATUS          PORTS                    NAMES
+d557e6f2e97b   welcome-to-docker:latest   "docker-entrypoint.s…"   17 seconds ago   Up 14 seconds   0.0.0.0:8098->3000/tcp   NodeJSRylles
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\welcome-to-docker> cd C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker build -t irinaserver .
+[+] Building 56.3s (7/7) FINISHED                                                        docker:default
+ => [internal] load build definition from Dockerfile                                               0.1s
+ => => transferring dockerfile: 123B                                                               0.0s
+ => [internal] load .dockerignore                                                                  0.1s
+ => => transferring context: 2B                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.8.5                                    2.7s
+ => [internal] load build context                                                                  0.0s
+ => => transferring context: 510B                                                                  0.0s
+ => [1/2] FROM docker.io/library/python:3.8.5@sha256:e9b7e3b4e9569808066c5901b8a9ad315a9f14ae8d3  52.8s
+ => => resolve docker.io/library/python:3.8.5@sha256:e9b7e3b4e9569808066c5901b8a9ad315a9f14ae8d39  0.0s
+ => => sha256:e9b7e3b4e9569808066c5901b8a9ad315a9f14ae8d3949ece22ae339fff2cad0 2.36kB / 2.36kB     0.0s
+ => => sha256:675ca1005d35edfb6f324e7211110cad6d1247c7b945c738b7b549f46a608a79 2.22kB / 2.22kB     0.0s
+ => => sha256:57df1a1f1ad841deaf50c8f662d77e93b4b17af776ed66148116607f9aceffa8 50.40MB / 50.40MB  19.0s
+ => => sha256:28a4c88cdbbf27e06dc5dc6784504d6536e8678284d84dd7f88f95b2145d27b0 8.42kB / 8.42kB     0.0s
+ => => sha256:71e126169501d71bbbd0d3c8d9f35836c41660869fe8432ac606341ed21f7adb 7.81MB / 7.81MB     2.9s
+ => => sha256:1af28a55c3f320826db8df3146a2c198f9042877ef679f9e32210aa9a7fac9ef 10.00MB / 10.00MB   2.9s
+ => => sha256:03f1c9932170e54fface2382b2550b8052ae3d41f27e66ea1294e2055dd2b2e7 51.83MB / 51.83MB  26.5s
+ => => sha256:65b3db15f518f11e53c95664d0675a5d78a5329d18d5316a406c2a45907a07 192.25MB / 192.25MB  30.4s
+ => => extracting sha256:57df1a1f1ad841deaf50c8f662d77e93b4b17af776ed66148116607f9aceffa8         11.5s
+ => => sha256:3e3b8947ed83f2a39a813e0a9172cfdd571d4c943228a74e833af60e7536cac5 6.15MB / 6.15MB    22.5s
+ => => sha256:a4850b8bdbb7b624a1aaf5892b7409d5ae64f8dfdbb19e3017cf6e7fbbfb0ef9 18.00MB / 18.00MB  26.9s
+ => => sha256:41653399496823f7855fe3bf2725fe0a1b79f2da59db9f3b8d5d9a5177c896ae 233B / 233B        26.9s
+ => => sha256:1b580f9ce4cedf9f911da821c8445cd807bc29a7ab3cc62937b87604138dbfa8 2.12MB / 2.12MB    27.9s
+ => => extracting sha256:71e126169501d71bbbd0d3c8d9f35836c41660869fe8432ac606341ed21f7adb          0.6s
+ => => extracting sha256:1af28a55c3f320826db8df3146a2c198f9042877ef679f9e32210aa9a7fac9ef          0.3s
+ => => extracting sha256:03f1c9932170e54fface2382b2550b8052ae3d41f27e66ea1294e2055dd2b2e7          4.8s
+ => => extracting sha256:65b3db15f518f11e53c95664d0675a5d78a5329d18d5316a406c2a45907a0723         13.2s
+ => => extracting sha256:3e3b8947ed83f2a39a813e0a9172cfdd571d4c943228a74e833af60e7536cac5          0.6s
+ => => extracting sha256:a4850b8bdbb7b624a1aaf5892b7409d5ae64f8dfdbb19e3017cf6e7fbbfb0ef9          1.1s
+ => => extracting sha256:41653399496823f7855fe3bf2725fe0a1b79f2da59db9f3b8d5d9a5177c896ae          0.0s
+ => => extracting sha256:1b580f9ce4cedf9f911da821c8445cd807bc29a7ab3cc62937b87604138dbfa8          0.4s
+ => [2/2] COPY server.py /server.py                                                                0.5s
+ => exporting to image                                                                             0.1s
+ => => exporting layers                                                                            0.1s
+ => => writing image sha256:304ea4160027b2e9e2e781d1d9ebe159730dd07fb9524dd10c5fbe34dcf35b55       0.0s
+ => => naming to docker.io/library/irinaserver                                                     0.0s
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker image
+
+Usage:  docker image COMMAND
+
+Manage images
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+Run 'docker image COMMAND --help' for more information on a command.
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker images
+REPOSITORY          TAG       IMAGE ID       CREATED          SIZE
+irinaserver         latest    304ea4160027   32 seconds ago   882MB
+welcome-to-docker   latest    e0903c44ec12   53 minutes ago   269MB
+busybox             latest    a416a98b71e2   2 months ago     4.26MB
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker run -p 8090:8000 -d irinaserver:latest
+116f15d6bb96a0558765b14998b05183a90d3dd5133a36cbe23539598ef512cd
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker ps
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS          PORTS                    NAMES
+116f15d6bb96   irinaserver:latest   "python3 -u server.py"   22 seconds ago   Up 20 seconds   0.0.0.0:8090->8000/tcp   flamboyant_zhukovsky
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker log
+docker: 'log' is not a docker command.
+See 'docker --help'
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker logs
+"docker logs" requires exactly 1 argument.
+See 'docker logs --help'.
+
+Usage:  docker logs [OPTIONS] CONTAINER
+
+Fetch the logs of a container
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker logs 116f15d6bb96
+Listening on port 8000 ...
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker logs 116f15d6bb96  -f
+Listening on port 8000 ...
+[+] Building 2.5s (7/7) FINISHED                                                         docker:default
+ => [internal] load .dockerignore                                                                  0.0s
+ => => transferring context: 2B                                                                    0.0s
+ => [internal] load build definition from Dockerfile                                               0.1s
+ => => transferring dockerfile: 123B                                                               0.0s
+ => [internal] load metadata for docker.io/library/python:3.8.5                                    2.3s
+ => [internal] load build context                                                                  0.0s
+ => => transferring context: 31B                                                                   0.0s
+ => [1/2] FROM docker.io/library/python:3.8.5@sha256:e9b7e3b4e9569808066c5901b8a9ad315a9f14ae8d39  0.0s
+ => CACHED [2/2] COPY server.py /server.py                                                         0.0s
+ => exporting to image                                                                             0.0s
+ => => exporting layers                                                                            0.0s
+ => => writing image sha256:304ea4160027b2e9e2e781d1d9ebe159730dd07fb9524dd10c5fbe34dcf35b55       0.0s
+ => => naming to docker.io/library/irinaserver                                                     0.0s
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker images
+REPOSITORY          TAG       IMAGE ID       CREATED          SIZE
+irinaserver         latest    304ea4160027   44 minutes ago   882MB
+welcome-to-docker   latest    e0903c44ec12   2 hours ago      269MB
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker run -p 8090:8000 -d irinaserver:latest
+39599e35b503769a5f8f64cee8fac106023c0e304e893aba7ddb35db0da05634
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker ps
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS          PORTS                    NAMES
+39599e35b503   irinaserver:latest   "python3 -u server.py"   20 seconds ago   Up 19 seconds   0.0.0.0:8090->8000/tcp   affectionate_albattani
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker logs
+"docker logs" requires exactly 1 argument.
+See 'docker logs --help'.
+
+Usage:  docker logs [OPTIONS] CONTAINER
+
+Fetch the logs of a container
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker logs 39599e35b503
+Listening on port 8000 ...
+172.17.0.1 - - [16/Oct/2023 11:33:27] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [16/Oct/2023 11:33:27] "GET /favicon.ico HTTP/1.1" 200 -
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP> docker logs 39599e35b503  -f
+Listening on port 8000 ...
+172.17.0.1 - - [16/Oct/2023 11:33:27] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [16/Oct/2023 11:33:27] "GET /favicon.ico HTTP/1.1" 200 -
+172.17.0.1 - - [16/Oct/2023 11:34:10] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [16/Oct/2023 11:34:10] "GET /favicon.ico HTTP/1.1" 200 -
+172.17.0.1 - - [16/Oct/2023 11:34:12] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [16/Oct/2023 11:34:12] "GET /favicon.ico HTTP/1.1" 200 -
+172.17.0.1 - - [16/Oct/2023 11:34:12] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [16/Oct/2023 11:34:12] "GET /favicon.ico HTTP/1.1" 200 -
+172.17.0.1 - - [16/Oct/2023 11:34:12] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [16/Oct/2023 11:34:12] "GET /favicon.ico HTTP/1.1" 200 -
+PS C:\Users\amm4e\Downloads\devOps\docker_repo\ServerDockerHTTP>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

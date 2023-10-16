@@ -1,0 +1,29 @@
+1. Izveidot S3 Bucket: Izveidojiet jaunu S3 bucket. Pārliecinieties, ka jums ir nepieciešamās
+AWS atslēgas un konfigurācija.
+
+aws s3api create-bucket --bucket irina-s3-cli-task --region us-west-2 --create-bucket-configuration LocationConstraint=us-west-2
+
+2. Augšupielādēt Failus uz S3: Izmantojot AWS CLI. Augšupielādējiet vairākus failus uz S3
+bucket.
+
+aws s3 cp ./rubber-ducky.jpg s3://irina-s3/
+
+
+3. Lejupielādēt Failus no S3: Lejupielādējiet specifiskus failus no S3 bucket uz vietējo datoru vai serveri.
+
+s3://irina-s3/rubber-ducky.jpg
+
+4. List Bucket Saturs: Iegūstiet sarakstu ar visiem failiem un objektiem, kas atrodas S3
+bucketā.
+
+aws s3 cp s3://irina-s3/rubber-ducky.jpg C:\Users\amm4e\Downloads\devOps\s3\newf
+
+5. Dzēst Failus no S3: Dzēst konkrētus failus no S3 bucket. Izmantojot AWS CLI.
+
+aws s3 rm s3://irina-s3/rubber-ducky.jpg
+
+6. Izveidot Statisks Tīmekļa Saturu: Konfigurējiet S3 bucket kā statisko tīmekļa vietni un
+pārliecinieties, ka publiski pieejamie faili ir pieejami pēc to URL.
+
+7. Versiju Pārvaldība: Iestatiet objektu versiju pārvaldību S3 bucket, lai sekotu visiem
+izmaiņu vēstures variantiem
